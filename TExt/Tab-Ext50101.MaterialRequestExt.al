@@ -7,5 +7,10 @@ tableextension 50101 "Material Request Ext" extends "Purchases & Payables Setup"
             DataClassification = ToBeClassified;
             TableRelation = "No. Series";
         }
+        field(50200; "Vendor Invoice Nos"; Code[20])
+        {
+            DataClassification = ToBeClassified;
+            TableRelation = "No. Series";
+        }
     }
 }

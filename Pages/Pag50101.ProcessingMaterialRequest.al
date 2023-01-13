@@ -133,6 +133,8 @@ page 50112 "Processing Material Req"
                 begin
                     CreatePurOdr.GetMaterialReq(Rec);
                     CreatePurOdr.Run();
+
+
                     //    if Confirm('Do you want to create a purchase order?') then
 
 

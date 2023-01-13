@@ -1,20 +1,50 @@
-// codeunit 50140 "Get Invoice and shippment no"
+// codeunit 50130 "Get Vendor Invoice no"
 // {
-//     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales-Post", 'OnAfterPostSalesDoc', '', true, true)]
-//     local procedure GetInvoiceAndShipNo(var SalesHeader: Record "Sales Header"; SalesShptHdrNo: Code[20]; SalesInvHdrNo: Code[20])
+
+
 //     var
-//         WebOrderIntegrataion: Record "Web Order";
+//         MaterialRequestExt: Record "Purchases & Payables Setup";
+//         NoSeriesMgt: Codeunit NoSeriesManagement;
 
 
+
+//     trigger OnInsert()
 //     begin
+//         InitInsert();
+//         "Created Date" := Today; //auto fill date
+//     end;
 
-//         Clear(WebOrderIntegrataion);
-//         WebOrderIntegrataion.SetCurrentKey("Document Type", "Document No.", "Line No.");
-//         WebOrderIntegrataion.SetRange("Document Type", WebOrderIntegrataion."Document Type"::"Sales Order");
-//         WebOrderIntegrataion.SetRange("Document No.", SalesHeader."No.");
-//         WebOrderIntegrataion.ModifyAll("Posted Invoice No.", SalesInvHdrNo);
-//         WebOrderIntegrataion.ModifyAll("Posted Shipment No.", SalesShptHdrNo);
+//     procedure InitInsert()
+//     begin
+//         if "No." = '' then begin
+//             TestNoSeries;
+//             // CheckFullyPaid;
+//             NoSeriesMgt.InitSeries(GetNoSeriesCode, xRec."No. Series", Today, "No.", "No. Series");
+//         end;
+//     end;
 
+//     procedure TestNoSeries()
+//     begin
+//         MaterialRequestExtSetup();
+//         MaterialRequestExt.TestField("Material Request Nos");
+
+
+//     end;
+
+
+
+//     procedure GetNoSeriesCode(): Code[20]
+//     var
+//         NoSeriesCode: Code[20];
+//     begin
+//         MaterialRequestExtSetup();
+//         NoSeriesCode := MaterialRequestExt."Material Request Nos";
+//         exit(NoSeriesCode);
+//     end;
+
+//     local procedure MaterialRequestExtSetup()
+//     begin
+//         MaterialRequestExt.Get();
 //     end;
 
 

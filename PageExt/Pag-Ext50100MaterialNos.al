@@ -9,6 +9,11 @@ pageextension 50142 "Material Request Ext" extends "Purchases & Payables Setup"
             {
                 ApplicationArea = all;
             }
+            field("Vendor Invoice Nos"; Rec."Vendor Invoice Nos")
+            {
+                ApplicationArea = all;
+            }
+
 
         }
     }
